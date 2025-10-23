@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Platino</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-white min-h-screen font-sans text-gray-800">
+
+  <header class="bg-gradient-to-r from-indigo-700 via-blue-600 to-cyan-500 shadow-lg">
+    <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center text-white">
+      <h1 class="text-3xl font-extrabold tracking-tight drop-shadow-md flex items-center gap-2">
+      <img src="Platino.png" alt="Logo Platino" class="w-8 h-8">
+      Platino Admin
+      </h1>
+        <nav class="flex items-center space-x-6 text-sm font-medium">
+        <a href="Acceueil.html" class="hover:underline hover:text-cyan-200 transition">Accueil</a>
+        <a href="pages offres.html.html" class="hover:underline hover:text-cyan-200 transition">Nos offres</a>
+        <a href="Nous contacter.html" class="hover:underline hover:text-cyan-200 transition">Nous contacter</a>
+        <a href="Utilisateur.html" class="hover:underline hover:text-cyan-200 transition">Mon compte</a>
+      </nav>
+    </div>
+  </header>
+    <section class="max-w-5xl mx-auto mt-10 bg-white shadow-lg rounded-2xl p-6 border border-indigo-100 flex items-center gap-6">
+      <img id="userPhoto" src="default-avatar.png" class="w-24 h-24 rounded-full border-2 border-indigo-300">
+      <div class="user-details">
+        <p><strong>Nom :</strong> <span id="userName">Jean Dupont</span></p>
+        <p><strong>ID :</strong> <span id="userID">98765</span></p>
+        <p><strong>Rôle :</strong> Utilisateur - Admin</p>
+      </div>
+    </section>
+
+
+<section class="max-w-6xl mx-auto mt-10 bg-white shadow-lg rounded-2xl p-6 border border-indigo-100">
+  <h2 class="text-2xl font-bold text-indigo-700 mb-4">Gestion des offres</h2>
+
+<div class="flex items-center gap-3 mb-6">
+    <input type="text" id="searchOffers" placeholder="Rechercher une offre..."
+           class="flex-1 border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+    <button class="bg-indigo-600 text-white px-5 py-2 rounded-lg hover:bg-indigo-700 transition">Rechercher</button>
+</div>
+
+  <div class="overflow-x-auto">
+    <table class="min-w-full border border-gray-200 rounded-lg overflow-hidden">
+      <thead class="bg-indigo-50">
+        <tr>
+          <th class="px-4 py-3 text-left text-gray-700 font-semibold">ID</th>
+          <th class="px-4 py-3 text-left text-gray-700 font-semibold">Titre de l'offre</th>
+          <th class="px-4 py-3 text-left text-gray-700 font-semibold">Statut</th>
+          <th class="px-4 py-3 text-left text-gray-700 font-semibold">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="offerTable" class="divide-y divide-gray-200">
+        <tr>
+          <td class="px-4 py-3">001</td>
+          <td class="px-4 py-3">Chargé de recrutement</td>
+          <td class="px-4 py-3 text-green-600">Ouverte</td>
+          <td class="px-4 py-3 flex gap-2">
+            <button class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600">Fermer</button>
+            <button class="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700">Ouvrir</button>
+            <button class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700">Supprimer</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="max-w-6xl mx-auto mt-10 bg-white shadow-lg rounded-2xl p-6 border border-indigo-100">
+  <h2 class="text-2xl font-bold text-indigo-700 mb-4">Créer un utilisateur</h2>
+  
+  <form id="createUserForm" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div>
+      <label for="nom" class="block text-sm font-medium text-gray-700 mb-2">Nom</label>
+      <input type="text" id="nom" name="nom" placeholder="Votre nom"
+             class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+    </div>
+
+    <div>
+      <label for="prenom" class="block text-sm font-medium text-gray-700 mb-2">Prénom</label>
+      <input type="text" id="prenom" name="prenom" placeholder="Votre prénom"
+             class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+    </div>
+
+    <div>
+      <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+      <input type="email" id="email" name="email" placeholder="votre.email@example.com"
+             class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+    </div>
+
+    <div>
+      <label for="telephone" class="block text-sm font-medium text-gray-700 mb-2">Numéro de téléphone</label>
+      <input type="tel" id="telephone" name="telephone" placeholder="06 12 34 56 78"
+             class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+    </div>
+
+    <div>
+      <label for="userID" class="block text-sm font-medium text-gray-700 mb-2">ID Utilisateur</label>
+      <input type="text" id="userID" name="userID" placeholder="Ex : 10245"
+             class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+    </div>
+
+    <div class="flex items-end">
+      <button type="submit"
+              class="bg-indigo-600 text-white w-full md:w-auto px-6 py-3 rounded-lg hover:bg-indigo-700 transition">
+        Créer l’utilisateur
+      </button>
+    </div>
+  </form>
+</section>
+
+<section class="max-w-6xl mx-auto mt-10 mb-20 bg-white shadow-lg rounded-2xl p-6 border border-indigo-100">
+  <h2 class="text-2xl font-bold text-indigo-700 mb-4">Gestion des utilisateurs</h2>
+
+  <div class="flex items-center gap-3 mb-6">
+    <input type="text" id="searchUsers" placeholder="Rechercher un utilisateur..."
+           class="flex-1 border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+    <button class="bg-indigo-600 text-white px-5 py-2 rounded-lg hover:bg-indigo-700 transition">Rechercher</button>
+  </div>
+
+  <div class="overflow-x-auto">
+    <table class="min-w-full border border-gray-200 rounded-lg overflow-hidden">
+      <thead class="bg-indigo-50">
+        <tr>
+          <th class="px-4 py-3 text-left text-gray-700 font-semibold">ID</th>
+          <th class="px-4 py-3 text-left text-gray-700 font-semibold">Nom</th>
+          <th class="px-4 py-3 text-left text-gray-700 font-semibold">Email</th>
+          <th class="px-4 py-3 text-left text-gray-700 font-semibold">Statut</th>
+          <th class="px-4 py-3 text-left text-gray-700 font-semibold">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="userTable" class="divide-y divide-gray-200">
+        <tr>
+          <td class="px-4 py-3">98765</td>
+          <td class="px-4 py-3">Jean Dupont</td>
+          <td class="px-4 py-3">jean.dupont@example.com</td>
+          <td class="px-4 py-3 text-green-600">Actif</td>
+          <td class="px-4 py-3 flex gap-2">
+            <button class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600">Bloquer</button>
+            <button class="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700">Débloquer</button>
+            <button class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700">Supprimer</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<script src="Javascript.admin.js"></script>
+
+<footer class="w-full text-center py-3 text-sm text-gray-500 bg-white mt-20">
+  © 2025 Platino — Tous droits réservés
+</footer>
+</body>
+</html>

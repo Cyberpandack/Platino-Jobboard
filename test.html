@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title> Test Job Board </title>
+</head>
+
+<div id="createUser">
+    <h2> Create User </h2>
+    <form id="createForm">
+        <input type="text" name="first_name" placeholder="First name">
+        <input type="text" name="last_name" placeholder="Last name">
+        <input type="text" name="email" placeholder="Email">
+        <input type="text" name="password" placeholder="Password">
+        <button type="submit"> CREATE </button>
+    </form>
+</div>
+
+<div id="getUser">
+    <h2>Get User</h2>
+    <form id="getForm">
+        <input type="text" name="get_id" placeholder="User ID">
+        <button type="submit"> GET </button>
+    </form>
+</div>
+
+<div id="userUpdate">
+    <h2> Update User </h2>
+    <form id="updateForm">
+        <input type="text" name="user_id" placeholder="User ID">
+        <input type="text" name="first_name" placeholder="First name">
+        <input type="text" name="last_name" placeholder="Last name">
+        <input type="text" name="email" placeholder="Email">
+        <input type="text" name="password" placeholder="Password">
+        <button type="submit"> UPDATE </button>
+    </form>
+</div>
+
+<div id="deleteUser">
+    <h2>Delete User</h2>
+    <form id="deleteForm">
+        <input type="text" name="delete_id" placeholder="User ID">
+        <button type="submit"> DELETE </button>
+    </form>
+</div>
+
+
+<script>
+
+
+    const cform = document.getElementById("createForm");
+    cform.addEventListener("submit", CreateUserHandler)
+    async function CreateUserHandler(event) {
+        event.preventDefault();
+
+        const data = {
+            first_name: event.target.first_name.value.trim(),
+            last_name: event.target.last_name.value.trim(),
+            email: event.target.email.value.trim(),
+            password: event.target.password.value.trim(),
+        };
+
+        try {
+            const response = await fetch("http://localhost:5001/api/users", {
+                method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+            alert("User created with succes : " + result.data.first_name + result.data.last_name);
+
+        } catch (error) {
+            alert("Error");
+        }
+    }
+
+
+    const gform = document.getElementById("getForm");
+    gform.addEventListener("submit", GetUserHandler)
+    async function GetUserHandler(event) {
+        event.preventDefault();
+
+        const get_id = event.target.get_id.value.trim()
+
+        try {
+            const response = await fetch(`http://localhost:5001/api/users/${get_id}`, { method: "GET" });
+
+            const result = await response.json();
+            alert("User get with succes : " + result.get_id);
+
+        } catch (error) {
+            alert("Error");
+        }
+    }
+
+
+    const uform = document.getElementById("updateForm");
+    uform.addEventListener("submit", UpdateUserHandler)
+    async function UpdateUserHandler(event) {
+        event.preventDefault();
+
+        const user_id = event.target.user_id.value.trim()
+        const data = {
+            first_name: event.target.first_name.value.trim(),
+            last_name: event.target.last_name.value.trim(),
+            email: event.target.email.value.trim(),
+            password: event.target.password.value.trim(),
+        };
+
+        try {
+            const response = await fetch(`http://localhost:5001/api/users/${user_id}`, {
+                method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+            alert("User update with succes : " + result.first_name + result.last_name);
+
+        } catch (error) {
+            alert("Error");
+        }
+    }
+
+
+    const dform = document.getElementById("deleteForm");
+    dform.addEventListener("submit", DeleteUserHandler)
+    async function DeleteUserHandler(event) {
+        event.preventDefault();
+
+        const delete_id = event.target.delete_id.value.trim()
+
+        try {
+            const response = await fetch(`http://localhost:5001/api/users/${delete_id}`, {
+                method: "DELETE"
+            });
+            const result = await response.json();
+            alert("User deleted with succes : " + result.delete_id);
+        } catch (error) {
+            alert("Error");
+        }
+    }
+
+</script>
+
+
+</html>

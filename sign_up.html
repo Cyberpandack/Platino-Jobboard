@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Platino - Créer un compte</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --ring: 0 0 0 3px rgba(37,99,235,.25) }
+    body{ font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif }
+    .focus-ring:focus{ outline: none; box-shadow: var(--ring) }
+  </style>
+</head>
+<body class="bg-gray-100 m-0 p-0">
+  <header class="w-full bg-gradient-to-r from-indigo-700 via-blue-600 to-cyan-500 shadow-lg p-6 text-white flex justify-between items-center">
+    <h1 class="text-3xl font-extrabold tracking-tight drop-shadow-md">🌐Platino Utilisateur</h1>
+    <nav class="flex items-center space-x-6 text-sm font-medium">
+      <a href="index.html" class="hover:underline hover:text-cyan-200 transition">Accueil</a>
+      <a href="pages offres.html.html" class="hover:underline hover:text-cyan-200 transition">Nos offres</a>
+      <a href="#" class="hover:underline hover:text-cyan-200 transition">Nous contacter</a>
+      <a href="Utilisateur.html" class="hover:underline hover:text-cyan-200 transition">Mon compte</a>
+    </nav>
+  </header>
+
+  <main class="min-h-screen">
+    <section class="max-w-5xl mx-auto mt-10">
+      <div class="bg-white shadow-lg rounded-2xl p-6 border border-indigo-100">
+        <h2 class="text-2xl font-bold text-indigo-700">Créer un compte</h2>
+        <p class="text-gray-600 mt-1">Rejoignez Platino pour trouver un emploi, un stage, une alternance ou une formation.</p>
+      </div>
+    </section>
+
+    
+    <section class="max-w-5xl mx-auto mt-8">
+      <form id="signupForm" class="bg-white shadow-lg rounded-2xl p-6 border border-indigo-100 grid grid-cols-1 md:grid-cols-2 gap-6" novalidate>
+        <div class="col-span-1">
+          <label for="lastName" class="block text-sm font-semibold text-gray-800">Nom</label>
+          <input id="lastName" name="last_name" type="text" required placeholder="Dupont" class="mt-2 w-full rounded-xl border border-gray-200 bg-gray-50 p-3 focus-ring" />
+          <p class="mt-1 text-xs text-gray-500">Ton nom de famille.</p>
+        </div>
+     
+        <div class="col-span-1">
+          <label for="firstName" class="block text-sm font-semibold text-gray-800">Prénom</label>
+          <input id="firstName" name="first_name" type="text" required placeholder="Jean" class="mt-2 w-full rounded-xl border border-gray-200 bg-gray-50 p-3 focus-ring" />
+        </div>
+
+        <div class="col-span-1">
+          <label for="email" class="block text-sm font-semibold text-gray-800">Email</label>
+          <input id="email" name="email" type="email" required placeholder="jean.dupont@email.com" class="mt-2 w-full rounded-xl border border-gray-200 bg-gray-50 p-3 focus-ring" />
+          <p class="mt-1 text-xs text-gray-500">Utilisé pour la connexion et les alertes.</p>
+        </div>
+    
+        <div class="col-span-1 md:col-span-2 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <label for="password" class="block text-sm font-semibold text-gray-800">Mot de passe</label>
+          <div class="relative mt-2">
+            <input id="password" name="password" type="password" minlength="8" required placeholder="Au moins 8 caractères" class="w-full rounded-xl border border-gray-200 bg-gray-50 p-3 pr-12 focus-ring" />
+            <button type="button" id="togglePwd" class="absolute inset-y-0 right-0 px-3 text-sm text-gray-500">Afficher</button>
+          </div>
+        
+        <div class="col-span-1 md:col-span-2 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div>
+            <label for="studyLevel" class="block text-sm font-semibold text-gray-800">Niveau d'études</label>
+            <select id="studyLevel" name="study_level" required class="mt-2 w-full rounded-xl border border-gray-200 bg-gray-50 p-3 focus-ring">
+              <option value="">Sélectionner…</option>
+              <option>Bac</option>
+              <option>Bac+2</option>
+              <option>Licence</option>
+              <option>Master</option>
+              <option>Doctorat</option>
+            </select>
+          </div>
+          <div class="md:col-span-2">
+            <label for="studyField" class="block text-sm font-semibold text-gray-800">Domaine d'études</label>
+            <input id="studyField" name="study_field" type="text" required placeholder="Informatique, Marketing, Gestion…" class="mt-2 w-full rounded-xl border border-gray-200 bg-gray-50 p-3 focus-ring" />
+          </div>
+        </div>
+        
+        <div class="col-span-1 md:col-span-2">
+          <label for="interestInput" class="block text-sm font-semibold text-gray-800">Centres d'intérêt</label>
+          <div class="mt-2 flex gap-3">
+            <input id="interestInput" type="text" placeholder="Ex: cybersécurité, IA, football…" class="flex-1 rounded-xl border border-gray-200 bg-gray-50 p-3 focus-ring" />
+            <button type="button" id="addInterest" class="rounded-xl bg-blue-600 text-white px-4 py-3 hover:bg-blue-700">Ajouter</button>
+          </div>
+          <div id="interestChips" class="mt-3 flex flex-wrap gap-2">
+        
+          </div>
+          <input type="hidden" id="interestsHidden" name="interests" value="" />
+        </div>
+
+       
+        <div class="col-span-1 md:col-span-2 flex items-start gap-3">
+          <input id="cgu" type="checkbox" required class="mt-1 h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500" />
+          <label for="cgu" class="text-sm text-gray-700">J'accepte les <a href="#" class="text-blue-600 hover:underline">conditions d'utilisation</a> et la <a href="#" class="text-blue-600 hover:underline">politique de confidentialité</a>.</label>
+        </div>
+
+        <div class="col-span-1 md:col-span-2 flex items-center justify-between">
+          <p id="formMsg" class="text-sm text-gray-500"></p>
+          <button type="submit" class="rounded-xl bg-gradient-to-r from-indigo-600 to-blue-600 text-white font-semibold px-6 py-3 hover:from-indigo-700 hover:to-blue-700 shadow">
+            Créer mon compte
+          </button>
+        </div>
+      </form>
+
+     
+      <div class="bg-white shadow-lg rounded-2xl p-6 border border-gray-200 mt-6">
+        <p class="text-sm text-gray-600">Déjà inscrit ? <a href="login.html" class="text-blue-600 hover:underline">Se connecter</a></p>
+      </div>
+    </section>
+  </main>
+
+  
+  <div id="toast" class="fixed right-4 bottom-4 hidden rounded-xl bg-gray-900 text-white px-4 py-3 shadow-lg">Compte créé ✅</div>
+
+  <script>
+    // Helpers
+    const toast = (msg) => {
+      const t = document.getElementById('toast');
+      t.textContent = msg; t.classList.remove('hidden');
+      setTimeout(()=> t.classList.add('hidden'), 1800);
+    }
+
+
+    
+    document.getElementById('togglePwd').addEventListener('click', ()=>{
+      const isPwd = pwd.getAttribute('type') === 'password';
+      pwd.setAttribute('type', isPwd ? 'text' : 'password');
+      document.getElementById('togglePwd').textContent = isPwd ? 'Masquer' : 'Afficher';
+    });
+
+  
+    const chips = document.getElementById('interestChips');
+    const inputInterest = document.getElementById('interestInput');
+    const hiddenInterests = document.getElementById('interestsHidden');
+    const addChip = (val) => {
+      const v = (val || '').trim();
+      if (!v) return;
+      const el = document.createElement('span');
+      el.className = 'inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-100 border border-gray-200 text-sm';
+      el.innerHTML = `<span>${v}</span><button type="button" class="text-gray-500 hover:text-gray-700">×</button>`;
+      el.querySelector('button').addEventListener('click', ()=>{ el.remove(); syncHidden(); });
+      chips.appendChild(el);
+      inputInterest.value = '';
+      syncHidden();
+    }
+    const syncHidden = () => {
+      const values = [...chips.querySelectorAll('span:first-child')].map(s=>s.textContent);
+      hiddenInterests.value = values.join(',');
+    }
+    document.getElementById('addInterest').addEventListener('click', ()=> addChip(inputInterest.value));
+    inputInterest.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); addChip(inputInterest.value); }});
+
+
+    document.getElementById('signupForm').addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const cform = e.currentTarget;
+      if(!cform.checkValidity()){
+        document.getElementById('formMsg').textContent = 'Vérifie les champs requis.';
+        return;
+      }
+     
+      const data = Object.fromEntries(new FormData(form).entries());
+      try {
+       
+        console.log('POST /api/auth/signup', data);
+        toast('Compte créé');
+        document.getElementById('formMsg').textContent = '';
+        
+      } catch (err){
+        document.getElementById('formMsg').textContent = 'Une erreur est survenue. Réessaie.';
+      }
+    });
+
+
+
+
+    const cform = document.getElementById("signupForm");
+    cform.addEventListener("submit", CreateUserHandler)
+    async function CreateUserHandler(event) {
+        event.preventDefault();
+
+        const data = {
+            first_name: event.target.first_name.value.trim(),
+            last_name: event.target.last_name.value.trim(),
+            email: event.target.email.value.trim(),
+            password: event.target.password.value.trim(),
+        };
+
+        try {
+            const response = await fetch("http://localhost:5001/api/users", {
+                method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+            alert("User created with succes : " + result.data.first_name + result.data.last_name);
+
+        } catch (error) {
+            alert("Error");
+        }
+    }
+
+
+
+
+  </script>
+</body>
+</html>

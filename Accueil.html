@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Platino</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="bg-white min-h-screen font-sans text-gray-800">
+
+<header class="sticky top-0 z-50 bg-gradient-to-r from-indigo-700 via-blue-600 to-cyan-500 shadow-lg w-full text-white">
+  <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+    
+    <h1 class="text-3xl font-extrabold tracking-tight drop-shadow-md flex items-center gap-2">
+      <img src="Platino.png" alt="Logo Platino" class="w-8 h-8">
+      Platino Accueil
+    </h1>
+   
+    <div class="flex items-center space-x-6">
+      <nav class="flex items-center space-x-6 text-sm font-medium">
+        <a href="Accueil.html" class="hover:underline hover:text-cyan-200 transition">Accueil</a>
+        <a href="pages offres.html.html" class="hover:underline hover:text-cyan-200 transition">Nos offres</a>
+        <a href="Nous contacter.html" class="hover:underline hover:text-cyan-200 transition">Nous contacter</a>
+        <a href="Utilisateur.html" class="hover:underline hover:text-cyan-200 transition">Mon compte</a>
+      </nav>
+
+      <div class="flex items-center space-x-2 ml-6">
+        <button id="loginBtn" class="bg-white text-indigo-700 px-4 py-2 rounded-xl font-semibold hover:bg-indigo-50 transition duration-300">
+          Se connecter
+        </button>
+        <button id="signupBtn" class="bg-indigo-800 px-4 py-2 rounded-xl font-semibold hover:bg-indigo-700 transition duration-300">
+          S'inscrire
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="bg-gradient-to-r from-indigo-700 via-blue-600 to-cyan-500 text-white text-center py-20 px-6">
+<h2 class="text-5xl font-extrabold mb-4 flex items-center justify-center gap-2">
+  Trouvez votre job de rêve avec Platino
+  <img src="fusée.gif" 
+       alt="Fusée" 
+       class="w-10 h-10 inline-block">
+</h2>
+
+  <p class="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
+    Un jobboard créé par quatre étudiants d’Epitech, né d’une idée, d’une blague, et d’une nuit sans sommeil.  
+    Platino, c’est le fruit d’une passion : relier les talents aux meilleures opportunités.
+  </p>
+  <a href="pages offres.html.html" 
+     class="bg-white text-indigo-700 px-6 py-3 rounded-xl font-semibold hover:bg-indigo-50 transition duration-300 shadow-lg">
+    Découvrir nos offres
+  </a>
+</section>
+
+<main class="max-w-5xl mx-auto mt-20 px-6 fade-in">
+  <div class="bg-white/90 backdrop-blur-lg p-10 rounded-3xl shadow-2xl">
+    <h3 class="text-3xl font-bold mb-6 bg-gradient-to-r from-indigo-700 via-blue-600 to-cyan-500 bg-clip-text text-transparent text-center">
+      Notre histoire
+    </h3>
+
+    <p class="text-gray-600 leading-relaxed text-justify mb-10">
+      Tout a commencé à Epitech, quand Guillaume, notre responsable, nous a demandé de former des groupes pour un projet.
+      La fondatrice d'Ascend du groupe est arrivée avec une idée : créer Ascend, un jobboard qu’elle voulait rendre concret. Motivés, on a décidé de la suivre dans l’aventure.
+    </p>
+
+    <p class="text-gray-600 leading-relaxed text-justify mb-10">
+      Mais très vite, les choses ont pris une tournure… administrative et nocturne.
+      Lors d’une discussion, Jean-Baptiste a plaisanté (ou pas) en lui disant qu’il pourrait potentiellement lui voler l’idée.
+      Le stress monta d’un cran : la future “mère” d’Ascend ne dormit plus cette nuit-là.
+      Et, à 4h15 du matin, réveillée et déterminée, elle fit rédiger un contrat mystérieux, sorti de nulle part, qui disait noir sur blanc :<br><br>
+      <strong>“Interdiction d’utiliser mon code, sous peine de malédiction éternelle sur vos push GitHub.”</strong>
+    </p>
+
+    <p class="text-gray-600 leading-relaxed text-justify mb-10">
+      Impossible de toucher à son code, ni d’utiliser le nom “Ascend”.
+      Alors, plutôt que de renoncer, on a fait ce qu’on fait de mieux : repartir de zéro.
+      Nouveau code, nouveau nom, même équipe.
+      C’est comme ça qu’est né <strong>Platino</strong>, un jobboard libre, fun, et surtout 100 % fait maison.
+    </p>
+
+    <img src="image.jpg.jpg" 
+         alt="Équipe Platino" 
+         class="w-full h-96 object-cover rounded-2xl shadow-lg hover:scale-105 transition duration-500">
+  </div>
+</main>
+
+<footer class="w-full text-center py-6 text-sm text-gray-500 bg-gray-50 mt-20 border-t border-gray-200">
+  © 2025 Platino — Tous droits réservés | <a href="#" class="hover:text-indigo-600 transition">Mentions légales</a>
+</footer>
+
+<script>
+document.addEventListener('scroll', () => {
+  document.querySelectorAll('.fade-in').forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 100) el.classList.add('visible');
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title> Test Job Board </title>
+</head>
+
+<div id="createCompany">
+    <h2> Create Company </h2>
+    <form id="createForm">
+        <input type="text" name="name" placeholder="Name">
+        <input type="text" name="description" placeholder="Description">
+        <input type="text" name="website" placeholder="Website">
+        <input type="text" name="location" placeholder="Location">
+        <input type="text" name="tel" placeholder="Telephone">
+        <input type="text" name="email" placeholder="Email">
+        <button type="submit"> CREATE </button>
+    </form>
+</div>
+
+<div id="getCompany">
+    <h2>Get Company</h2>
+    <form id="getForm">
+        <input type="text" name="get_id" placeholder="Company ID">
+        <button type="submit"> GET </button>
+    </form>
+</div>
+
+<div id="companyUpdate">
+    <h2> Update Company </h2>
+    <form id="updateForm">
+        <input type="text" name="company_id" placeholder="Company ID">
+        <input type="text" name="name" placeholder="Name">
+        <input type="text" name="description" placeholder="Description">
+        <input type="text" name="website" placeholder="Website">
+        <input type="text" name="location" placeholder="Location">
+        <input type="text" name="tel" placeholder="Telephone">
+        <input type="text" name="email" placeholder="Email">
+        <button type="submit"> UPDATE </button>
+    </form>
+</div>
+
+<div id="deleteCompany">
+    <h2>Delete Company</h2>
+    <form id="deleteForm">
+        <input type="text" name="delete_id" placeholder="Company ID">
+        <button type="submit"> DELETE </button>
+    </form>
+</div>
+
+
+<script>
+
+
+    const cform = document.getElementById("createForm");
+    cform.addEventListener("submit", CreateCompanyHandler)
+    async function CreateCompanyHandler(event) {
+        event.preventDefault();
+
+        const data = {
+            name: event.target.name.value.trim(),
+            description: event.target.description.value.trim(),
+            website: event.target.website.value.trim(),
+            location: event.target.location.value.trim(),
+            tel: event.target.tel.value.trim(),
+            email: event.target.email.value.trim(),
+        };
+
+        try {
+            const response = await fetch("http://localhost:5001/api/company", {
+                method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+            alert("Company created with succes : " + result.data.name);
+
+        } catch (error) {
+            alert("Error");
+        }
+    }
+
+
+    const gform = document.getElementById("getForm");
+    gform.addEventListener("submit", GetCompanyHandler)
+    async function GetCompanyHandler(event) {
+        event.preventDefault();
+
+        const get_id = event.target.get_id.value.trim()
+
+        try {
+            const response = await fetch(`http://localhost:5001/api/company/${get_id}`, { method: "GET" });
+
+            const result = await response.json();
+            alert("Company get with succes : " + result.get_id);
+
+        } catch (error) {
+            alert("Error");
+        }
+    }
+
+
+    const uform = document.getElementById("updateForm");
+    uform.addEventListener("submit", UpdateCompanyHandler)
+    async function UpdateCompanyHandler(event) {
+        event.preventDefault();
+
+        const company_id = event.target.company_id.value.trim()
+        const data = {
+            name: event.target.name.value.trim(),
+            description: event.target.description.value.trim(),
+            website: event.target.website.value.trim(),
+            location: event.target.location.value.trim(),
+            tel: event.target.tel.value.trim(),
+            email: event.target.email.value.trim(),
+        };
+
+        try {
+            const response = await fetch(`http://localhost:5001/api/company/${company_id}`, {
+                method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+            alert("Company update with succes : " + result.name);
+
+        } catch (error) {
+            alert("Error");
+        }
+    }
+
+
+    const dform = document.getElementById("deleteForm");
+    dform.addEventListener("submit", DeleteCompanyHandler)
+    async function DeleteCompanyHandler(event) {
+        event.preventDefault();
+
+        const delete_id = event.target.delete_id.value.trim()
+
+        try {
+            const response = await fetch(`http://localhost:5001/api/company/${delete_id}`, {
+                method: "DELETE"
+            });
+            const result = await response.json();
+            alert("Company deleted with succes : " + result.delete_id);
+        } catch (error) {
+            alert("Error");
+        }
+    }
+
+</script>
+
+
+</html>

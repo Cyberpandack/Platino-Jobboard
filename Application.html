@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title> Test Job Board </title>
+</head>
+
+<div id="createApplication">
+    <h2> Create Application </h2>
+    <form id="createForm">
+        <input type="text" name="applicant_id" placeholder="Applicant_id">
+        <input type="text" name="advertissement_id" placeholder="Advertissement_id">
+        <input type="text" name="status" placeholder="Status">
+        <button type="submit"> CREATE </button>
+    </form>
+</div>
+
+<div id="getApplication">
+    <h2>Get Application</h2>
+    <form id="getForm">
+        <input type="text" name="get_id" placeholder="Application ID">
+        <button type="submit"> GET </button>
+    </form>
+</div>
+
+<div id="UpdateApplication">
+    <h2> Update Application </h2>
+    <form id="updateForm">
+        <input type="text" name="application_id" placeholder="Application_id">       
+        <input type="text" name="applicant_id" placeholder="Applicant_id">
+        <input type="text" name="advertissement_id" placeholder="Advertissement_id">
+        <input type="text" name="status" placeholder="Status">
+        <button type="submit"> UPDATE </button>
+    </form>
+</div>
+
+<div id="deleteApplication">
+    <h2>Delete Application</h2>
+    <form id="deleteForm">
+        <input type="text" name="delete_id" placeholder="Application ID">
+        <button type="submit"> DELETE </button>
+    </form>
+</div>
+
+
+<script>
+
+    // CREATE
+    
+    const cform = document.getElementById("createForm");
+    cform.addEventListener("submit", CreateApplicationHandler)
+    async function CreateApplicationHandler(event) {
+        event.preventDefault();
+
+        const data = {
+            applicant_id: event.target.applicant_id.value.trim(),
+            advertissement_id: event.target.advertissement_id.value.trim(),
+            status: event.target.status.value.trim(),
+        };
+
+        try {
+            const response = await fetch("http://localhost:5001/api/application", {
+                method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+            alert("Application created with succes : " + result.data.name);
+
+        } catch (error) {
+            alert("Error");
+        }
+    }
+
+    // GET
+
+    const gform = document.getElementById("getForm");
+    gform.addEventListener("submit", GetApplicationHandler)
+    async function GetApplicationHandler(event) {
+        event.preventDefault();
+
+        const get_id = event.target.get_id.value.trim()
+
+        try {
+            const response = await fetch(`http://localhost:5001/api/application/${get_id}`, { method: "GET" });
+
+            const result = await response.json();
+            alert("Application get with succes : " + result.get_id);
+
+        } catch (error) {
+            alert("Error");
+        }
+    }
+
+    // UPDATE
+
+    const uform = document.getElementById("updateForm");
+    uform.addEventListener("submit", UpdateApplicationHandler)
+    async function UpdateApplicationHandler(event) {
+        event.preventDefault();
+
+        const applicant_id = event.target.applicant_id.value.trim()
+        const data = {
+            applicant_id: event.target.applicant_id.value.trim(),
+            advertissement_id: event.target.advertissement_id.value.trim(),
+            status: event.target.status.value.trim(),
+        };
+
+        try {
+            const response = await fetch(`http://localhost:5001/api/application/${applicant_id}`, {
+                method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+            alert("Application update with succes : " + result.name);
+
+        } catch (error) {
+            alert("Error");
+        }
+    }
+
+    // DELETE
+
+    const dform = document.getElementById("deleteForm");
+    dform.addEventListener("submit", DeleteApplicationHandler)
+    async function DeleteApplicationHandler(event) {
+        event.preventDefault();
+
+        const delete_id = event.target.delete_id.value.trim()
+
+        try {
+            const response = await fetch(`http://localhost:5001/api/application/${delete_id}`, {
+                method: "DELETE"
+            });
+            const result = await response.json();
+            alert("Application deleted with succes : " + result.delete_id);
+        } catch (error) {
+            alert("Error");
+        }
+    }
+
+</script>
+
+
+</html>
